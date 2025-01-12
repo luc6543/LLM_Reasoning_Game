@@ -1,16 +1,45 @@
-# This is a sample Python script.
-
-# Press Shift+F10 to execute it or replace it with your code.
-# Press Double Shift to search everywhere for classes, files, tool windows, actions, and settings.
-
-
-def print_hi(name):
-    # Use a breakpoint in the code line below to debug your script.
-    print(f'Hi, {name}')  # Press Ctrl+F8 to toggle the breakpoint.
+from ollama import chat
+from ollama import ChatResponse
+from pydantic.v1.validators import constr_lower
 
 
-# Press the green button in the gutter to run the script.
-if __name__ == '__main__':
-    print_hi('PyCharm')
+# response: ChatResponse = chat(model='llama3.2:1b', messages=[
+#   {
+#     'role': 'user',
+#     'content': 'Why is the sky blue?',
+#   },
+# ])
+# print(response['message']['content'])
+# # or access fields directly from the response object
+# print(response.message.content)
 
-# See PyCharm help at https://www.jetbrains.com/help/pycharm/
+
+def sendQuery(model, query, conversation):
+
+    message = validateMessage('user', query)
+
+    conversation.append(message)
+
+    chatResponse = chat(model=model, messages=conversation)
+
+
+
+    conversation.append(chatResponse['message'])
+
+    return conversation
+
+
+def validateMessage(role, content):
+    message = {
+        'role': role,
+        'content': content,
+    }
+    return message
+
+
+
+conversation = []
+while True:
+    query = input('> ')
+    conversation = sendQuery('llama3.2:1b', query, conversation)
+    print(conversation[-1]['content'])
