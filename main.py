@@ -1,18 +1,16 @@
 from ollama import chat
 from ollama import ChatResponse
 from pydantic.v1.validators import constr_lower
+class LLMbot:
+    def __init__(self, model, messages):
+        self.model = model
+        self.messages = messages
 
+    def updateChat(self, newMessages):
+        self.messages = newMessages
 
-# response: ChatResponse = chat(model='llama3.2:1b', messages=[
-#   {
-#     'role': 'user',
-#     'content': 'Why is the sky blue?',
-#   },
-# ])
-# print(response['message']['content'])
-# # or access fields directly from the response object
-# print(response.message.content)
-
+    def lastResponse(self):
+        return self.messages[-1]['content']
 
 def sendQuery(model, query, conversation):
 
@@ -39,7 +37,13 @@ def validateMessage(role, content):
 
 
 conversation = []
+
+bot = LLMbot('llama3.2:1b', [])
 while True:
     query = input('> ')
-    conversation = sendQuery('llama3.2:1b', query, conversation)
-    print(conversation[-1]['content'])
+    conversation = sendQuery(bot.model, query, bot.messages)
+    bot.updateChat(conversation)
+    print(bot.lastResponse())
+
+
+
