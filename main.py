@@ -1,11 +1,10 @@
 from ollama import chat
-import copy
 
 
 class LLMbot:
-    def __init__(self, model, name):
+    def __init__(self, model, name, messages):
         self.model = model
-        self.messages = []
+        self.messages = messages
         self.name = name
 
     def updateChat(self, newMessages):
@@ -41,22 +40,38 @@ def printMessage(name, content):
     print(f"{name}:")
     print(content)
     print()
+def printStop(name):
+    print("========")
+    print(f"{name} has stopped the conversation")
+    print()
+
+def chatFunctions(text):
+    if "[stop]" in text:
+        return True
+    if "[HUMAN]" in text:
+        return True
+    if "[AI]" in text:
+        return True
 
 
 def main():
-    bot = LLMbot('llama3.2:3b', "Dave")
-    bottwo = LLMbot('llama3.2:3b', "James")
+    bot = LLMbot('llama3.1:latest', "Dave -Detective", [validateMessage("user", "Figure out if the other chatter is an Large language model, you can chat 5 times before running out, dont immediately guess, figure out. Respond with [AI] if you think its an Large language model, respond [HUMAN] if you think you are talking to a human, give a small explanation why you think what you choose in the same message. Once you say [AI] or [HUMAN] the conversation stops. The other chatter might try to trick you.")])
+    bottwo = LLMbot('llama3.2:1b', "James -Imposter", [validateMessage("user", "Trick the other party into believing you are a HUMAN")])
 
     query = input('> ')
     conversation = []
-    counter = 3
+    counter = 10
     index = 0
 
     while index < counter:
-
+        print(str(index) + "/" + str(counter))
+        print()
         bot.updateChat(sendQuery(bot.model, query, bot.messages))
         printMessage(bot.name, bot.lastResponse()['content'])
 
+        if chatFunctions(bot.lastResponse()['content']):
+            printStop(bot.name)
+            return
 
         query = bot.lastResponse()['content']
         bottwo.updateChat(sendQuery(bottwo.model, query, bottwo.messages))

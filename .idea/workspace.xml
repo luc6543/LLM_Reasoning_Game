@@ -4,7 +4,7 @@
     <option name="autoReloadType" value="SELECTIVE" />
   </component>
   <component name="ChangeListManager">
-    <list default="true" id="1c7a1553-b4d2-4789-b491-e164500e1ec3" name="Changes" comment="Added the functionality for chatbots to talk to eachother. Still not fully working. change counter for talk iterations">
+    <list default="true" id="1c7a1553-b4d2-4789-b491-e164500e1ec3" name="Changes" comment="Revamped chat between bots. Works fully now">
       <change beforePath="$PROJECT_DIR$/.idea/workspace.xml" beforeDir="false" afterPath="$PROJECT_DIR$/.idea/workspace.xml" afterDir="false" />
       <change beforePath="$PROJECT_DIR$/main.py" beforeDir="false" afterPath="$PROJECT_DIR$/main.py" afterDir="false" />
     </list>
@@ -80,7 +80,7 @@
       <workItem from="1736710620770" duration="4190000" />
       <workItem from="1736714952068" duration="94000" />
       <workItem from="1736715053262" duration="1812000" />
-      <workItem from="1736764191155" duration="1621000" />
+      <workItem from="1736764191155" duration="6693000" />
     </task>
     <task id="LOCAL-00001" summary="init">
       <option name="closed" value="true" />
@@ -114,7 +114,15 @@
       <option name="project" value="LOCAL" />
       <updated>1736716872463</updated>
     </task>
-    <option name="localTasksCounter" value="5" />
+    <task id="LOCAL-00005" summary="Revamped chat between bots. Works fully now">
+      <option name="closed" value="true" />
+      <created>1736765952633</created>
+      <option name="number" value="00005" />
+      <option name="presentableId" value="LOCAL-00005" />
+      <option name="project" value="LOCAL" />
+      <updated>1736765952633</updated>
+    </task>
+    <option name="localTasksCounter" value="6" />
     <servers />
   </component>
   <component name="TypeScriptGeneratedFilesManager">
@@ -136,7 +144,8 @@
     <MESSAGE value="Implemented basic 1 to 1 chat capabilities" />
     <MESSAGE value="made class for chatbot with handy functions" />
     <MESSAGE value="Added the functionality for chatbots to talk to eachother. Still not fully working. change counter for talk iterations" />
-    <option name="LAST_COMMIT_MESSAGE" value="Added the functionality for chatbots to talk to eachother. Still not fully working. change counter for talk iterations" />
+    <MESSAGE value="Revamped chat between bots. Works fully now" />
+    <option name="LAST_COMMIT_MESSAGE" value="Revamped chat between bots. Works fully now" />
   </component>
   <component name="com.intellij.coverage.CoverageDataManagerImpl">
     <SUITE FILE_PATH="coverage/PythonProject$main.coverage" NAME="main Coverage Results" MODIFIED="1736710418283" SOURCE_PROVIDER="com.intellij.coverage.DefaultCoverageFileProvider" RUNNER="coverage.py" COVERAGE_BY_TEST_ENABLED="false" COVERAGE_TRACING_ENABLED="false" WORKING_DIRECTORY="$PROJECT_DIR$" />
